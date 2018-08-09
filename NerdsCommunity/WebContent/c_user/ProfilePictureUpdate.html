@@ -1,0 +1,25 @@
+<div ng-controller="UserController">
+<div float=right>
+<form  enctype="multipart/form-data" action="http://localhost:8055/NeardsCommunityAccess/doUpload" method="post">
+<table>
+
+<tr><td >Picture </td><td><input type="file" name="file"/></td></tr>
+
+<tr><td ><td colspan="2"><input type="submit" value="UPLOAD"/></td></tr>
+
+</table>
+</form>
+</div>
+<div ng-if="user in userData" float=left >
+<table>
+<tr>
+<td><input type="text" name="" value="{{user.loginname}}"></td>
+<td><input type="text" name="" value="{{user.password}}"></td>
+<td><input type="text" name="" value="{{user.email}}"></td>
+<td><input type="text" name="" value="{{user.username}}"></td>
+<td><input type="text" name="" value="{{user.mobile}}"></td>
+<td><input type="submit" value="Update"></td>
+</tr>
+</table>
+</div>
+</div>

@@ -1,0 +1,179 @@
+<html>
+<head>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+button {
+    background-color: grey;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+button:hover {
+    background-color: lightblue;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container" ng-Controller="ChatController">
+<form ng-submit="addMessage()" name="ChatMsg">
+<table>
+<tr>
+<td>Chat Text</td>
+<td>
+<input type="text" ng-model="message"/>
+<span class="count" ng-bind="max-message.length">140</span>
+</td>
+<td>
+<button ng-disabled="message.length>140 || message.length==0" class="btn btn-info">Send Message</button>
+</td>
+</tr>
+</table>
+</form>
+<p ng-repeat="message in messages|orderBy:'time':true">
+<time>{{message.time|date:HH:MM}}</time>
+<span>{{message.message}}</span>
+</p>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat</title>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/common/portfolio.css" rel="stylesheet">
+  </head>
+  <style>
+  body{
+  background-image:url("resources/chat.jpg");
+  }
+  </style>
+  <body>
+
+    <header class="container">
+      <div id="heading" class="masthead">
+        
+        <h2>Chat <small>Online Chat Room</small></h2>
+       
+      </div>
+   </header>
+   <br><br>
+   
+   <section class="main container">
+     <div class="row">
+    	<div class="col-md-12">
+	   		<p class="lead">Type in the box below to start a chat!</p>
+	   		
+	   	</div> 
+     
+     </div>
+   	
+   	
+   	<div class="row">
+   		<div class="col-md-12">
+   		
+   			<form role="form" id="chatForm" ng-submit="sendMessage(chat)">
+          <div class="alert alert-info notification" id="joinedChat" ng-if="latestUser" ng-animate="{enter: 'fade', leave: 'fade'}">
+            {{latestUser}} has joined the chat!
+          </div>
+  			  <div class="form-group">
+  			    <label for="to">Send To</label>
+  			    <select class="form-control" id="to" name="to" ng-model="chat.to">
+  			    	<option value="">Select Recipient</option>
+              <option value="all">All Users</option>
+  			    	<option ng-repeat="user in users" value="{{user}}" ng-hide="currentUser.username==user">{{capitalize(user)}}</option>
+  			    </select>
+  			  </div>
+  			  <div class="form-group">
+  			    <label for="message">Message {{currentUser.username}}</label>
+  			    <textarea class="form-control focus-on-click" name="message" placeholder="Message..." rows="3" ng-model="chat.message" required=""></textarea>
+  			  </div>
+  			  <input type="submit" ng-focus="focus-on-click" name="send" class="btn btn-success" value="Send" />
+   			</form>
+   		
+   		</div>
+   	
+   	</div>
+   	
+   	<div class="row">
+   		<div class="col-md-12" id="chats" >
+   			<div ng-repeat="chat in chats | reverse" class="chat {{chat.direction}}" ng-class="{'broadcast': chat.broadcast}">
+          		<span class="from">
+		        	{{chat.from}}
+		       		<small ng-if="chat.broadcast">BROADCAST</small>
+		        </span>
+		        <span class="message">{{chat.message}}</span>
+		    </div>
+   		</div>
+   		
+   	
+   	</div>
+   	
+ 
+   
+   </section>
+   
+    </body>
+</html>
+ -->

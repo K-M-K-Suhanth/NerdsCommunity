@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="RouteConfig.js"></script>
+<script src="c_user/UserController.js"></script>
+<script src="c_blog/BlogController.js"></script>
+<script src="c_forum/ForumController.js"></script>
+<script src="c_friend/FriendController.js"></script>
+<script src="c_chat/ChatController.js"></script>
+<script src="c_chat/ChatService.js"></script>
+<script src="c_job/JobController.js"></script>
+<script src="c_login/LoginController.js"></script>
+<script src="c_register/RegisterController.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
+</head>
+<style>
+    body{
+        background: url(images//1.jpg);
+        height: 100%;
+        background-repeat:no-repeat;
+        background-size: cover;
+        font-family: Arial;
+        color: black;
+    }
+    ul{
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+    }
+    
+    ul li{
+        float: left;
+        width: 16.6666%;
+        height: 40px;
+        background-color: lightblue;
+        opacity: 0.9;
+        line-height: 40px;
+        text-align: center;
+        font-size: 20px;
+    }
+    
+    ul li a{
+        text-decoration: none;
+        color: white;
+        display: block;
+    }
+    
+    ul li a:hover{
+        background-color: black;
+    }
+    
+    ul li ul li{
+    	width: 100%;
+        display: none;
+    }
+    
+    ul li:hover ul li{
+        display: block;
+    }
+    
+    /* img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+} */
+
+</style>
+<body ng-app="MyModule">
+<div class="background">
+<div cass="nav">
+    <ul>
+        <li><a href="#/UserHome">Home</a></li>
+      <li ng-show="currentUser==undefined"><a href="#/login">Login</a></li>
+      <li ng-show="currentUser==undefined"><a href="#/register">Register</a></li>
+        <li><a href="#">Blog</a>
+            <ul>
+                <li><a href="#/ShowBlog">List Blogs</a></li>
+                <li><a href="#/AddBlog">Create New Blog</a></li>
+                <li ng-show="currentUser.role=='ADMIN'"><a href="#/AdminBlog">Manage Blogs</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Forum</a>
+            <ul>
+                <li><a href="#/ShowForum">List Forums</a></li>
+                <li><a href="#/AddForum">Start New Discussion</a></li>
+                <li ng-show="currentUser.role=='ADMIN'"><a href="#/AdminForum">Manage Forum</a></li>
+            </ul>
+        </li>    
+        <li><a href="#">Jobs</a>
+            <ul>
+                <li><a href="#/ShowJob">List Jobs</a></li>
+                <li ng-show="currentUser.role=='ADMIN'"><a href="#/AddJob">Post A New Job</a></li>
+            </ul>
+        </li>
+        <li ng-hide="currentUser==undefined"><a href="#">Friends</a>
+            <ul>
+               <!--  <li><a href="#/SuggestedFriend">Suggested Friends</a></li>
+                <li><a href="#/FriendList">Friends</a></li>
+                <li><a href="#/PendingFriendRequest">Pending Request</a></li> -->
+                <li><a href="#/chat">Chat</a></li>
+            </ul>
+        </li>
+        <li ng-hide="currentUser==undefined" style=float:right><a href="#/"><img src="http://localhost:8055/NeardsCommunityAccess/getImage/{{currentUser.loginname}}"  style="width:50px;height:40px;padding:0;margin:0;border-radius:50%"><span>  {{currentUser.username}}</span></a>
+            <ul>
+                <li><a href="#/profilePic">My Profile</a></li>
+                <li><a href="#/login">Sign Out</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</div>
+
+<div class="container">
+<div ng-view></div>
+</div>
+
+</body>
+</html>

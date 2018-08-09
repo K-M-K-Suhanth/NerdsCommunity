@@ -1,0 +1,102 @@
+<html>
+<head>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+hr
+{
+	display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 0.5%;
+    margin-right: 30%;
+    border-style: inset;
+    border-width: 1px;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.loginbox button 
+{
+    border: none;
+    outline: none;
+    height: 30px;
+    background: grey;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.loginbox button:hover
+{
+    cursor: pointer;
+    background: lightblue;
+    color: #000;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+</style>
+</head>
+<body>
+<div class="loginbox" ng-controller="ForumController">
+
+<div ng-repeat="forum in forumData">
+
+<h3 data-target="#{{forum.forumId}}" class="btn btn-info" data-toggle="collapse">{{forum.forumName}}</h3>
+<hr>
+<div id="{{forum.forumId}}" class="collapse">
+	{{forum.forumContent}}
+	</div>	
+<button class="btn btn-info" ng-show="forum.status=='NA'" ng-click="approveForums(forum.forumId)">APPROVE FORUM</button>	
+	
+<button class="btn btn-danger" ng-show="forum.status=='A'" ng-click="rejectForums(forum.forumId)">REJECT FORUM</button>		
+	
+<hr>	
+</div>
+</div>
+</body>
+</html>

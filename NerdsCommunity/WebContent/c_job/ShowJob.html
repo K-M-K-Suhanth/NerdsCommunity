@@ -1,0 +1,156 @@
+<html>
+<head>
+<style>
+
+//for pop up
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+table
+{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 6px;
+}
+
+th
+{
+	font-size: 15px;
+	font-style: strong;
+	text-align: center;
+    background-color: lightblue;
+    color: white;
+}
+
+td 
+{
+    text-align: center;
+    background-color: #fff;
+    color: black;
+}
+
+button
+{
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 60px;
+    background: grey;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+button:hover
+{
+    cursor: pointer;
+    background: lightblue;
+    color: #000;
+}
+
+button:visited 
+{
+	background: red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" ng-controller="JobController">
+<br>
+<br>
+<br>
+
+<table border="2" align="center" cellspacing="0">
+
+<tr>
+<th>Jobid</th>
+<th>Company</th>
+<th>Location</th>
+<th>Position</th>
+<th>Requirments</th>
+<th>Salary</th>
+<th>Vacancies</th>
+<th>Posted on</th>
+<th>Operation</th>
+</tr>
+
+
+
+<tr ng-repeat="jobdetail in jobdetailData">
+ <td> {{ jobdetail.jobid }} </td>
+ <td> {{ jobdetail.company }} </td>
+ <td> {{ jobdetail.location }} </td>
+ <td> {{ jobdetail.position }} </td>
+ <td> {{ jobdetail.requirments }} </td>
+ <td> {{ jobdetail.salary }} </td>
+ <td> {{ jobdetail.vacancies }} </td>
+ <td> {{ jobdetail.posteddate }} </td>
+ <td> <div class="popup" onclick="myFunction()"><button ng-click="applyjob(jobdetail.jobid)">Apply</button>
+ <span class="popuptext" id="myPopup">Applied!</span></div></td>
+</tr>
+
+</table>
+
+</div>
+</body>
+</html>

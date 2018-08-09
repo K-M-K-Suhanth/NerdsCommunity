@@ -1,0 +1,12 @@
+<div class="container" ng-controller="BlogController">
+
+<div ng-repeat="blog in blogData">
+<button ng-show="blog.status=='A'" data-target="#{{blog.blogId}}" class="btn btn-info" data-toggle="collapse">{{blog.blogName}}</button>
+<button ng-show="blog.status=='A'" class="btn btn-info" ng-click="incLike(blog.blogId)">{{blog.likes}}&nbsp;Like</button>
+<button ng-show="blog.status=='A'" class="btn btn-info" ng-click="incDisLike(blog.blogId)">{{blog.dislikes}}&nbsp;Dislike</button>
+<button ng-show="blog.status=='A' && currentUser!=undefined" class="btn btn-info" ng-click="comment(blog.blogId)">Comment</button>
+	<div ng-show="blog.status=='A'" id="{{blog.blogId}}" class="collapse">
+	{{blog.blogContent}}
+	</div>
+</div>
+</div>

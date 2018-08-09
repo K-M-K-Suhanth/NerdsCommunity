@@ -1,0 +1,113 @@
+<html>
+<head>
+    <title>login page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<style>
+body
+{
+    margin: 0;    
+    padding: 0;
+    /* background: url(bicycle.jpg); */
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+
+.loginbox
+{
+    width: 320px;
+    height: 420px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 2%;
+}
+
+.avatar
+{
+    width: 320px;
+    height: 100px;
+    border-radius: 1%;
+    position: absolute;
+    top: -50px;
+    left: calc(0% - 0px);
+}
+
+h1
+{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.loginbox p
+{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.loginbox input
+{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.loginbox input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.loginbox input[type="button"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: lightblue;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.loginbox input[type="button"]:hover
+{
+    cursor: pointer;
+    background: grey;
+    color: #000;
+}
+
+</style>          
+    <body>
+    <br>
+    <br>
+    <br>
+    <div class="loginbox" ng-controller="UserController">
+        <img src="c_login//bg-01.jpg" class="avatar">
+        <h1>LogIn</h1>
+        <form>
+        
+            <p>UserName</p>
+            <input type="text" name="" ng-model="user.loginname" placeholder="Enter Username" required>
+            <p>Password</p>
+            <input type="password" name="" ng-model="user.password" placeholder="Enter Password" required>
+            
+            <input type="button" ng-click="checklogin()" value="Login">
+          
+        
+        </form>
+        </div>
+    </body>
+</html>
